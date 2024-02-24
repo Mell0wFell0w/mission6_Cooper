@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace mission6_Cooper.Models
 {
@@ -8,16 +9,20 @@ namespace mission6_Cooper.Models
     {
         [Key]
         [Required]
-        public int MovieID { get; set;}
-        public string MovieTitle { get; set;}
-        public int MovieYear { get; set;}
-        public string MovieDirector { get; set;}
-        public string MovieCategory { get; set;}
-        public string MovieRating { get; set;}
-        public bool MovieEdited { get; set;}
-        public string MovieLentTo { get; set;}
-        public string MovieNotes { get; set;}
+        public int MovieId { get; set; }
 
+        [ForeignKey("CategoryId")]
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
+        public string Title { get; set; }
 
+        [Range(1888, int.MaxValue, ErrorMessage = "Year cannot be lower than 1888")]
+        public int Year { get; set; }
+        public string? Director { get; set; }
+        public string? Rating { get; set; }
+        public int Edited { get; set; }
+        public string? LentTo { get; set; }
+        public int CopiedToPlex { get; set; }
+        public string? Notes { get; set; }
     }
 }
